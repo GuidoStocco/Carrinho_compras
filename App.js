@@ -6,9 +6,11 @@ import { NavigationContainer } from '@react-navigation/native';
 
 export default function App(){
   return(
-    <NavigationContainer>
-      <StatusBar backgroundColor="#f0f4ff" barStyle="dark-content" />
+    <SafeAreaView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <StatusBar backgroundColor="#f0f4ff" barStyle="dark-content" />
         <Routes />
-    </NavigationContainer>
+      </NavigationContainer>
+    </SafeAreaView>
   )
 }
