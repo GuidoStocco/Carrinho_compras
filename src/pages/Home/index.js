@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView} from 'react-native';
 import { Feather} from '@expo/vector-icons';
-
+import Product from '../../components/Product';
 
 export default function Home(){
 
@@ -44,6 +44,11 @@ export default function Home(){
                     <Feather name='shopping-cart' size={30} color='#000'/>
                 </TouchableOpacity>
             </View>
+            <FlatList
+                data={products}
+                keyExtractor={item => String(item.id)}
+                renderItem={({item}) => <Product data={item}/>}
+            />
         </SafeAreaView>
     )
 }
