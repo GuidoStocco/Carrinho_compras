@@ -23,8 +23,20 @@ export default function CartProvider({children}){
         }
         setCart(products => [...products, data]);
     }
+
+    function removeCartItem(product){
+        const indexItem = cart.findIndex(item => item.id === product.id);
+        if(cart[indexItem]?.amount > 1){
+            cart[indexItem].amount -= 1;
+            cart[indexItem].total = cart[indexItem].total - cart[indexItem].price;
+            setCart(cart);
+            return;
+        }
+        const removeCart = cart.filter(item => item.id !== product.id);
+        setCart(removeCart);
+    }
     return(
-        <CartContext.Provider value={{cart, addCartItem}}>
+        <CartContext.Provider value={{cart, addCartItem, removeCartItem}}>
             {children}
         </CartContext.Provider>
     )
