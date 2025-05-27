@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/CartContext';
 import CartItem from '../../components/CartItem';
 
 export default function Cart(){
-    const {cart, addCartItem, removeCartItem} = useContext(CartContext);
+    const {cart, addCartItem, removeCartItem, total} = useContext(CartContext);
     return(
         <View style={styles.container}>
             <FlatList
@@ -16,6 +16,11 @@ export default function Cart(){
                 )}
                 renderItem={({item}) => (
                     <CartItem data={item} addAmount={() => addCartItem(item)} removeItem={() => removeCartItem(item)}/>
+                )}
+                ListFooterComponent={() => (
+                    <View style={styles.footer}>
+                        <Text style={styles.totalPrice}>Total: R$ {total} </Text>
+                    </View>
                 )}
             />
         </View>
@@ -35,5 +40,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 14
+    },
+    totalPrice: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 14,
+        marginBottom: 24
     }
 })
